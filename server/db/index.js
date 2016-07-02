@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var app = require('./app.js');
+var app = require('../app.js');
 
 exports.connection = mysql.createConnection({
   user: 'root',
@@ -8,7 +8,7 @@ exports.connection = mysql.createConnection({
 });
 
 //do we need to export this func call?
-connection.connect();
+// connection.connect();
 
 
 // Create a database connection and export it from this file.
