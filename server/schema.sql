@@ -1,17 +1,24 @@
-CREATE DATABASE chat;
+-- DROP DATABASE  chat
+
+CREATE DATABASE IF NOT EXISTS chat;
 
 USE chat;
 
-CREATE TABLE messages (
-  /* Describe your table here.*/
+CREATE TABLE IF NOT EXISTS messages ( 
+  id int,
+  message CHAR(30),
+  room CHAR(7),
+  user_id int
 );
 
-/* Create other tables and define schemas for them here! */
+DESCRIBE messages;
 
+CREATE TABLE IF NOT EXISTS users  (
+  id int, 
+  name CHAR(7),
+  message_id int
+);
 
+DESCRIBE users;
 
-
-/*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
- *  to create the database and the tables.*/
-
+SHOW TABLES;
