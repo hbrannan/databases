@@ -9,13 +9,15 @@ module.exports = {
       //and gives it back
     },
     post: function (messageData, callback) {
+      callback = callback || function (v) { return v; };
       db.connection.query('INSERT INTO messages SET ?', messageData, function (err, result) {
         if (err) {
-          console.log('error!');
+          throw err;
+          callback(err, null);
         } else {    
-          callback(result);
+          callback(null, result);
         }
-        callback(err, result);
+        // callback(err, result);
       });
     }
   },
@@ -23,12 +25,16 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function (userData) {
+    post: function (userData, callback) {
+      callback = callback || function (v) { return v; };
       db.connection.query('INSERT INTO users SET ?', userData, function (err, result) {
         if (err) {
+          throw err;
           console.log('error!');
+          callback(err, null);
         } else {    
           console.log('yup!');
+          callback(null, err);
         }
       });
     }

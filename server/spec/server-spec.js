@@ -14,9 +14,10 @@ describe('Persistent Node Chat Server', function() {
       password: 'carpool',
       database: 'chat'
     });
+
     dbConnection.connect();
 
-    var tablename = 'users'; //TODO: fill this in
+    var tablename = 'users'; 
 
     dbConnection.query('truncate ' + tablename, done);
   });
@@ -27,7 +28,6 @@ describe('Persistent Node Chat Server', function() {
 
   it('Should insert posted messages to the DB', function(done) {
     // Post the user to the chat server.
-    debugger;
     request({
       method: 'POST',
       uri: 'http://127.0.0.1:3000/classes/users',
@@ -66,7 +66,7 @@ describe('Persistent Node Chat Server', function() {
 
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
-       var tablename = "GGggGG"; // TODO: fill this out
+    var tablename = 'messages'; // TODO: fill this out
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
