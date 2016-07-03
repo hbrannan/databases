@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var app = require('../app.js');
-
+var monkey = require('node-monkey').start({'host': '127.0.0.1', 'port':'5050'});
 
 var connection = mysql.createConnection({
   host: 'localhost',
