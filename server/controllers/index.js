@@ -5,15 +5,18 @@ module.exports = {
   messages: {
 
     get: function (req, res) {
-      //figure out what the GET request is asking for
-      //have that help influence the query string
+      //define an obj that has data that will be passed to the dbQuery
+      //HERE you need to pass in a cb that will return some message to the user
+      models.messages.get(/*SOMEDATA*/, function(err, result){});
     }, 
     post: function (req, res) {
 
       var messageData = {
+        //id: //DOES AN AUTOINCREMENT ID JUST GET ADDED? 
         message: req.body.message,
         room: req.body.roomname,
-        user_id: 'SELECT id FROM users LEFT OUTER JOIN messages ON messages.id = users.message_id.id' 
+        //how does the foreign key work here???
+        // user_id: 'SELECT id FROM users LEFT OUTER JOIN messages ON messages.id = users.message_id.id' 
       };
       models.messages.post(messageData, function (err, result) {
         //what would this do
@@ -24,17 +27,21 @@ module.exports = {
 
   users: {
     get: function (req, res) {   
-
-         //or a specifically queried user? 
+      //define an obj that has data that will be passed to the dbQuery
+      var userData = {
+        ///?????
+      }
+      //HERE you need to pass in a cb that will return some message to the user
+      models.users.get(/*SOMEDATA*/, function(err,result){});
     },
     post: function (req, res) {
       //post a single user
-      console.log(req.body);
       var userData = { 
+        //does the uniq usrID just get added? 
         name: req.body.username,
         message_id: '1234'
       };
-      console.log('heeeere', req.body.username);
+
       models.users.post(userData);
       res.end();
       //intercept the posts here and send the body to the models

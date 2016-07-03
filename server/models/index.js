@@ -7,7 +7,7 @@ module.exports = {
     get: function (messageQuery, cb) {
       //fetch all messages info: 
           //id, text, roomname, userName
-      db.connection.query('SELECT messages.id, messages.text, messages.roomname, userName FROM messages LEFT OUTER JOIN users on (messages.user_id = users.id)', function(err, result) {
+      db.connection.query('SELECT messages.id, messages.message, messages.room, userName FROM messages LEFT OUTER JOIN users on (messages.user_id = users.id)', function(err, result) {
         if (err) {
           throw err;
         } else {
@@ -19,7 +19,7 @@ module.exports = {
     post: function (messageData, cb) {
             //create a message
       callback = callback || function (v) { return v; };
-      db.connection.query('INSERT INTO messages SET ?', messageData, function (err, result) {
+      db.connection.query('INSERT INTO messages(message,user_id,room) SET ?', messageData, function (err, result) {
         if (err) {
           throw err;
           // callback(err, null);
