@@ -1,32 +1,36 @@
 var models = require('../models');
 
+//this file is for handing over the data
 module.exports = {
   messages: {
+
     get: function (req, res) {
-      //collect info from the request data
-      // 
+      //figure out what the GET request is asking for
+      //have that help influence the query string
     }, 
     post: function (req, res) {
+
       var messageData = {
         message: req.body.message,
         room: req.body.roomname,
-        user_id: 'SELECT id FROM users INNER JOIN messages ON messages.id = users.message_id.id' 
+        user_id: 'SELECT id FROM users LEFT OUTER JOIN messages ON messages.id = users.message_id.id' 
       };
-      console.log(req.body.message);
-      models.messages.post(messageData, function() {
-
+      models.messages.post(messageData, function (err, result) {
+        //what would this do
       });
       res.end();
     } 
   },
 
   users: {
-    // Ditto as above
     get: function (req, res) {   
+
+         //or a specifically queried user? 
     },
     post: function (req, res) {
+      //post a single user
       console.log(req.body);
-      var userData = {
+      var userData = { 
         name: req.body.username,
         message_id: '1234'
       };

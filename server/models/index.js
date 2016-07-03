@@ -4,26 +4,33 @@ db.connection.connect();
 
 module.exports = {
   messages: {
-    get: function () {
-      //takes req for info from displayCHatRoomz
-      //and gives it back
+    get: function (messageQuery, cb) {
+      //fetch all messages
+      db.connection.query('SELECT * FROM messages', function(err, res) {
+        if (err) {
+          throw err;
+        } else {
+          cb(res);
+        }
+      });
+
     },
-    post: function (messageData, callback) {
+    post: function (messageData, cb) {
+            //create a message
       callback = callback || function (v) { return v; };
       db.connection.query('INSERT INTO messages SET ?', messageData, function (err, result) {
         if (err) {
           throw err;
-          callback(err, null);
-        } else {    
-          callback(null, result);
+          // callback(err, null);
+        } else {  
+          callback(null, result);  //or should the cb go outside of this? 
         }
-        // callback(err, result);
       });
     }
   },
 
   users: {
-    // Ditto as above.
+      //fetch all users
     get: function () {},
     post: function (userData, callback) {
       callback = callback || function (v) { return v; };
