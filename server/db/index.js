@@ -1,6 +1,8 @@
 var mysql = require('mysql');
 var app = require('../app.js');
 var monkey = require('node-monkey').start({'host': '127.0.0.1', 'port':'5050'});
+//node inspector set up
+////   // "test": "node-inspector --no-preload & mocha server/spec/server-spec.js --debug-brk; RES=$?; kill %1; exit $RES",
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -11,12 +13,6 @@ var connection = mysql.createConnection({
 
 //do we need to export this func call?
 // connection.connect();
-// connection.query(path, function(err,rows,fields){})
-// connection.end();
-// Create a database connection and export it from this file.
-// You will need to connect with the user "root", no password,
-// and to the database "chat".
-
 
 /*
 https://www.youtube.com/watch?v=tPd4m3PLVqU
