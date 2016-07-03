@@ -1,7 +1,9 @@
 var mysql = require('mysql');
 var app = require('../app.js');
 
-exports.connection = mysql.createConnection({
+
+var connection = mysql.createConnection({
+  host: 'localhost',
   user: 'root',
   password: 'carpool',
   database: 'chat'
@@ -9,8 +11,8 @@ exports.connection = mysql.createConnection({
 
 //do we need to export this func call?
 // connection.connect();
-
-
+// connection.query(path, function(err,rows,fields){})
+// connection.end();
 // Create a database connection and export it from this file.
 // You will need to connect with the user "root", no password,
 // and to the database "chat".
@@ -22,3 +24,4 @@ http://stackoverflow.com/questions/22423746/run-mysql-on-sublime-text-2
 */
 
 //write the funx that EXPRESS (method that connects to the DB)
+exports.connection = connection;

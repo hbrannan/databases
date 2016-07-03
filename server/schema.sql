@@ -1,22 +1,22 @@
--- DROP DATABASE  chat
-
-CREATE DATABASE IF NOT EXISTS chat;
+CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE IF NOT EXISTS messages ( 
-  id int,
-  message CHAR(30),
-  room CHAR(7),
-  user_id int
+CREATE TABLE messages ( 
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  message TEXT(160) NOT NULL,
+  room VARCHAR(7),
+  user_id INTEGER NOT NULL,
+  PRIMARY KEY (id)
 );
 
 DESCRIBE messages;
 
-CREATE TABLE IF NOT EXISTS users  (
-  id int, 
-  name CHAR(7),
-  message_id int
+CREATE TABLE users  (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  name VARCHAR(7),
+  message_id INTEGER NOT NULL,
+  PRIMARY KEY (id)
 );
 
 DESCRIBE users;

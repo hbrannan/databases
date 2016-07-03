@@ -8,7 +8,7 @@ var parser = require('body-parser');
 // Router
 var router = require('./routes.js');
 
-var app = express();
+var app = express(); //this line creates a top level express application
 module.exports.app = app;
 
 // Set what we are listening on.
@@ -21,7 +21,7 @@ app.use(parser.json());
 // Set up our routes: express get and post requests w endpt: controller
 app.use('/classes', router);
 
-// Serve the client files
+// Serve the client static files-
 app.use(express.static(__dirname + '/../client'));
 
 // If we are being run directly, run the server.
