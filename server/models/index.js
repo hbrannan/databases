@@ -22,6 +22,7 @@ module.exports = {
     },
     post: function (messageData, cb) {
             //create a message
+            //////if you use the under-comment-section of params, it must be an array.
       /////insert into messages(text, userid, roomname) values (?, (select id from users where username = ? limit 1), ?)
       db.connection.query('INSERT INTO messages(message,user_id,room) SET ?', messageData, function (err, result) {
         if (err) {
