@@ -55,20 +55,19 @@ module.exports = {
     post: function (req, res) {
       //post a single user
       var userData = { 
-        //does the uniq usrID just get added? 
-        id: 1123,
         name: req.body.username,
-        message_id: 1234
+        'message_id': '1234'
       };
       //invoke models.users.post
        //when/if it retrieves a result for you, return a positive write head.
       models.users.post(JSON.stringify(userData), function (err, result) {
         if (err) {
-          console.log('errMod');
+          console.log('controllR');
           throw err;
         } else {
+          //what form is the result in?? 
           console.log('controllerUsrPost res:', result);
-          //what form is client expecting a result in? 
+          //client expecting a result in json
           res.end(JSON.stringify(result));
         }
 

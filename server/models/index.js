@@ -8,7 +8,7 @@ db.connection.connect();
 
 module.exports = {
   messages: {
-    get: function (messageQuery, cb) {
+    get: function (cb) {
       //fetch all messages info: 
           //id, text, roomname, username
       db.connection.query('SELECT messages.id, messages.message, messages.room, userName FROM messages LEFT OUTER JOIN users on (messages.user_id = users.id)', function(err, result) {
@@ -22,7 +22,7 @@ module.exports = {
     },
     post: function (messageData, cb) {
             //create a message
-      /////insert into messages(text, userid, roomname) values (?, ?, ?)
+      /////insert into messages(text, userid, roomname) values (?, (select id from users where username = ? limit 1), ?)
       db.connection.query('INSERT INTO messages(message,user_id,room) SET ?', messageData, function (err, result) {
         if (err) {
           cb(err, null);
@@ -37,7 +37,7 @@ module.exports = {
 
 
   users: { 
-    get: function (userQuery, cb) {
+    get: function (cb) {
       //fetch all usernames
       db.connection.query('SELECT * FROM users', function (err, result) {
         // cb(err, null);
@@ -56,10 +56,12 @@ module.exports = {
         if (err) {
           throw err;
           console.log('error!usrPost');
+                    ///you prbz don't want the cb(err, null);
           callback(err, null);
         } else {    
           console.log('model query/posted to db!', console.log(result));
-          callback(null, result);
+          ///////////////!!!!!!!!!!!!!! null as first arg ??!!
+          callback(result);
         }
       });
     }
