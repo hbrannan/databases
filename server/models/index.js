@@ -61,7 +61,7 @@ module.exports = {
         } else {    
           console.log('model query/posted to db!', console.log(result));
           ///////////////!!!!!!!!!!!!!! null as first arg ??!!
-          callback(result);
+          callback(null,result);
         }
       });
     }

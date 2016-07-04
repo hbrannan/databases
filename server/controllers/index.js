@@ -56,7 +56,7 @@ module.exports = {
       //post a single user
       var userData = { 
         name: req.body.username,
-        'message_id': '1234'
+        'message_id': 'SELECT id FROM messages INNER JOIN users ON messages.user_id = users.id'
       };
       //invoke models.users.post
        //when/if it retrieves a result for you, return a positive write head.
