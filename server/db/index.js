@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var app = require('../app.js');
-var monkey = require('node-monkey').start({'host': '127.0.0.1', 'port': '5050'});
+// var  monkey = require('node-monkey').start({'host': '127.0.0.1', 'port': '5050'});
 
 //node inspector set up
 ////   // "test": "node-inspector --no-preload & mocha server/spec/server-spec.js --debug-brk; RES=$?; kill %1; exit $RES",

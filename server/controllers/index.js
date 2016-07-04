@@ -16,8 +16,8 @@ module.exports = {
           throw err;
         } else {
           //HERE IS WHERE YOU RETURN YOUR RESULTS!: get requests
-          req.writeHead();
-          res.end(dbResult);
+          // res.writeHead();
+          res.end(JSON.stringify(dbResult));
         }
       });
     }, 
@@ -42,40 +42,37 @@ module.exports = {
 
   users: {
     get: function (req, res) {   
-      //define an obj that has data that will be passed to the dbQuery
-      var userData = {
-        ///?????
-      };
       //HERE you need to pass in a cb that will return some message to the user
       models.users.get(userData, function(err, result) { 
         if (err) {
           throw err;
+        } else {
+        //otherwise, on the end of retrieving this data, you need to write it tothe res
+          res.end(result);
         }
-        return result; 
       });
     },
     post: function (req, res) {
       //post a single user
       var userData = { 
         //does the uniq usrID just get added? 
-        id: '1234',
+        id: 1123,
         name: req.body.username,
-        'message_id': '1234'
+        message_id: 1234
       };
-
-      models.users.post(userData, function (err, result) {
+      //invoke models.users.post
+       //when/if it retrieves a result for you, return a positive write head.
+      models.users.post(JSON.stringify(userData), function (err, result) {
         if (err) {
+          console.log('errMod');
           throw err;
+        } else {
+          console.log('controllerUsrPost res:', result);
+          //what form is client expecting a result in? 
+          res.end(JSON.stringify(result));
         }
-      });
-      res.end();
-      //intercept the posts here and send the body to the models
-            //make sure that you .toSTring or JSON.stsringify to nterpret data
-        //mpodels will then send that body to the controllers. 
-    // a function which handles posting a message to the database
 
-    //on end of the request, you prbs need to rwrite head 
-    //and end the response 
+      });
 
     }
   }

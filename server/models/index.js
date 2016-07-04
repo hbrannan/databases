@@ -10,10 +10,9 @@ module.exports = {
   messages: {
     get: function (messageQuery, cb) {
       //fetch all messages info: 
-          //id, text, roomname, userName
+          //id, text, roomname, username
       db.connection.query('SELECT messages.id, messages.message, messages.room, userName FROM messages LEFT OUTER JOIN users on (messages.user_id = users.id)', function(err, result) {
         if (err) {
-          // cb(err, null);
           throw err;
         } else {
           cb(null, result);
@@ -23,10 +22,10 @@ module.exports = {
     },
     post: function (messageData, cb) {
             //create a message
-      callback = callback || function (v) { return v; };
+      /////insert into messages(text, userid, roomname) values (?, ?, ?)
       db.connection.query('INSERT INTO messages(message,user_id,room) SET ?', messageData, function (err, result) {
         if (err) {
-                    // cb(err, null);
+          cb(err, null);
           throw err;
           // callback(err, null);
         } else {  
@@ -44,20 +43,22 @@ module.exports = {
         // cb(err, null);
         if (err) {
           throw err;
+          ///callback()
         } else {
+          /////IT MAY BE THIS LINE!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           cb(null, result);
         }
       });
     },
     post: function (userData, callback) {
-      callback = callback || function (v) { return v; };
+      //////////"INSERT into users(username) values (?)"  << db.query(queryStr, params, func(e,r){})
       db.connection.query('INSERT INTO users SET ?', userData, function (err, result) {
         if (err) {
           throw err;
-          console.log('error!');
+          console.log('error!usrPost');
           callback(err, null);
         } else {    
-          console.log('yup!');
+          console.log('model query/posted to db!', console.log(result));
           callback(null, result);
         }
       });
